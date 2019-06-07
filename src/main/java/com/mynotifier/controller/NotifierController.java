@@ -42,7 +42,7 @@ public class NotifierController {
     @ResponseStatus(HttpStatus.OK)
     public void createGet(@RequestParam String text) {
         Message message = new Message();
-        message.setTitle("Будьте обережні! Увага!");
+        message.setTitle("Увага! Будьте обережні!");
         message.setText(text);
         messageService.notifyAll(message);
     }
