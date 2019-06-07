@@ -27,7 +27,7 @@ public class MessageStorageServiceImpl implements MessageStorageService {
     public List<Message> loadLast(Integer number) {
         return messages
                 .stream()
-                .sorted(Comparator.comparing(Message::getCreateDate))
+                .sorted(Comparator.comparing(Message::getCreateDate).reversed())
                 .limit(number)
                 .collect(Collectors.toList());
     }

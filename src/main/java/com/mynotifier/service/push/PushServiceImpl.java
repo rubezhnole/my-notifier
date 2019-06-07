@@ -12,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
+import static org.apache.http.entity.ContentType.APPLICATION_JSON;
+
 @Component
 public class PushServiceImpl implements PushService {
 
@@ -30,12 +32,10 @@ public class PushServiceImpl implements PushService {
         jsonObject.addProperty("ClickUrl", "http://komissar-alert.us-east-2.elasticbeanstalk.com/");
 
         try {
-            StringEntity stringEntity = new StringEntity(jsonObject.toString());
+            StringEntity stringEntity = new StringEntity(jsonObject.toString(), APPLICATION_JSON);
 
             HttpPost httpPost = new HttpPost("https://push4site.com/interface/send");
             httpPost.setEntity(stringEntity);
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json");
 
             HttpResponse execute = httpClient.execute(httpPost);
             System.out.println(execute.getStatusLine().getStatusCode());
