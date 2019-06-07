@@ -98,9 +98,11 @@
             notifyAll: function() {
                 if (confirm("Відправити повідомлення?")) {
                     axios
-                        .get("/notifyAll?text=" + app.newText);
-                    app.newText = null;
-                    this.loadLastTwentyAlerts();
+                        .get("/notifyAll?text=" + app.newText)
+                        .then(function() {
+                            app.newText = null;
+                            app.loadLastTwentyAlerts();
+                        });
                 }
             },
             loadLastTwentyAlerts: function() {
